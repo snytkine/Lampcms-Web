@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><web-app xmlns="http://java.sun.com/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" version="2.5" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd">
+    <context-param>
+        <description>Location of lampcms.zip file relative to application root</description>
+        <param-name>zipFile</param-name>
+        <param-value>/lampcms.zip</param-value>
+    </context-param>
+    
+    <listener>
+        <description>ServletContextListener</description>
+        <listener-class>dmitri.snytkine.Config</listener-class>
+    </listener>
+     
+    <servlet>
+        <servlet-name>LampWeb</servlet-name>
+        <servlet-class>dmitri.snytkine.LampWeb</servlet-class>
+        <init-param>
+            <param-name>author</param-name>
+            <param-value>Dmitri Snytkine</param-value>
+        </init-param>
+    </servlet>
+    <servlet>
+        <servlet-name>DownloadStream</servlet-name>
+        <servlet-class>dmitri.snytkine.DownloadStream</servlet-class>
+        <init-param>
+            <param-name>file</param-name>
+            <param-value>WEB-INF/phptest.php</param-value>
+        </init-param>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>LampWeb</servlet-name>
+        <url-pattern>*.htm</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>DownloadStream</servlet-name>
+        <url-pattern>/phptest.php</url-pattern>
+    </servlet-mapping>
+    <welcome-file-list>
+        <welcome-file>about.htm</welcome-file>
+    </welcome-file-list>
+    
+     <servlet>
+  <servlet-name>SystemServiceServlet</servlet-name>
+  <servlet-class>com.google.api.server.spi.SystemServiceServlet</servlet-class>
+  <init-param>
+   <param-name>services</param-name>
+   <param-value/>
+  </init-param>
+ </servlet>
+ 
+ <servlet-mapping>
+  <servlet-name>SystemServiceServlet</servlet-name>
+  <url-pattern>/_ah/spi/*</url-pattern>
+ </servlet-mapping>
+</web-app>
